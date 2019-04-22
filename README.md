@@ -1,4 +1,7 @@
 
+Clone 
+
+yarn
 
 deploy via gcloud:
 
@@ -7,3 +10,4 @@ npm run compile && npm run deploy --- helloWorldHTTP
 ```
 
 
+Inspired by: https://github.com/amsokol/gcp-cloud-functions-typescript-starter
