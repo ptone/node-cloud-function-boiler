@@ -6,7 +6,9 @@
   "author": "Preston Holmes <preston@ptone.com>",
   "license": "Apache-2.0",
   "dependencies": {
+    "@types/express": "^4.16.1",
     "@types/node": "^11.13.6",
+    "express": "^4.16.4",
     "ts-node": "^8.1.0",
     "typescript": "^3.4.4"
   },
