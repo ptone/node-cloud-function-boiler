@@ -1,8 +1,12 @@
+Opinionated Usage:
 
-Clone 
-
+```bash
+curl -L https://github.com/ptone/node-cloud-function-boiler/tarball/master | tar -xvz
+mv ptone-node-cloud-function-boiler-* my-func
+cd my-func
 yarn
-
+code .
+```
 deploy via gcloud:
 
 ```bash
