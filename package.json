@@ -1,0 +1,26 @@
+{
+  "name": "function-starter",
+  "version": "1.0.0",
+  "description": "Boilerplate for TS cloud functions",
+  "main": "index.js",
+  "author": "Preston Holmes <preston@ptone.com>",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@types/node": "^11.13.6",
+    "ts-node": "^8.1.0",
+    "typescript": "^3.4.4"
+  },
+  "devDependencies": {
+    "gts": "^0.9.0",
+    "typescript": "~3.1.0"
+  },
+  "scripts": {
+    "check": "gts check",
+    "clean": "gts clean",
+    "compile": "tsc -p .",
+    "fix": "gts fix",
+    "prepare": "npm run compile",
+    "pretest": "npm run compile",
+    "posttest": "npm run check"
+  }
+}
