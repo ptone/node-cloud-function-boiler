@@ -9,15 +9,21 @@ export FUNCTION_TARGET=helloWorldHTTP
 code .
 ```
 
-Serve locally:
+Serve locally, this includes tsc watch:
 ```bash
-npm start
+yarn run develop
 ```
+
+In another terminal swindow:
+```bash
+curl localhost:8080
+```
+
 
 deploy via gcloud:
 
 ```bash
-npm run compile && npm run deploy
+yarn run compile && yarn run deploy
 ```
 
 
