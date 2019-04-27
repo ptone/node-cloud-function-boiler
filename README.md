@@ -45,3 +45,5 @@ yarn run deploy
 Inspired by: https://github.com/amsokol/gcp-cloud-functions-typescript-starter
 
 This is not a Google Product.
+
+Photo Credit: [Colin Avery](https://unsplash.com/photos/InMS8UZ5Ki8)
