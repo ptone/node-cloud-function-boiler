@@ -1,4 +1,15 @@
-Opinionated Usage:
+# Quick Typescript Google Cloud Functions development
+
+![](boiler.jpg)
+
+### Features:
+
+* [Functions Framework](https://github.com/GoogleCloudPlatform/functions-framework-nodejs)
+* Live reload
+* Deploy shortcut (including Nodejs 10 runtime by default)
+* [Google Typescript style](https://www.npmjs.com/package/gts) 
+
+### Usage:
 
 ```bash
 curl -L https://github.com/ptone/node-cloud-function-boiler/tarball/master | tar -xvz
@@ -10,21 +21,26 @@ code .
 ```
 
 Serve locally, this includes tsc watch:
+
 ```bash
 yarn run develop
 ```
 
 In another terminal swindow:
+
 ```bash
 curl localhost:8080
 ```
 
 
-deploy via gcloud:
+deploy via gcloud as Cloud Function:
+Note: this assumes you have your current project configured in gcloud
 
 ```bash
-yarn run compile && yarn run deploy
+yarn run deploy
 ```
 
 
 Inspired by: https://github.com/amsokol/gcp-cloud-functions-typescript-starter
+
+This is not a Google Product.
