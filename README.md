@@ -20,7 +20,7 @@ export FUNCTION_TARGET=helloWorldHTTP
 code .
 ```
 
-Serve locally, this includes tsc watch:
+Serve locally, this includes hot reload via [tsc-watch](https://www.npmjs.com/package/tsc-watch):
 
 ```bash
 yarn run develop
