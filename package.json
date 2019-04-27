@@ -27,6 +27,6 @@
     "pretest": "yarn run compile",
     "posttest": "yarn run check",
     "deploy": "gcloud functions deploy --runtime nodejs10 --trigger-http --source ./build ${FUNCTION_TARGET}",
-    "start": "cd build;google-cloud/functions-framework --target ${FUNCTION_TARGET};cd .."
+    "start": "cd build;functions-framework --target ${FUNCTION_TARGET};cd .."
   }
 }

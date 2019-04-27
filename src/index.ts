@@ -13,7 +13,7 @@ console.log(pubsub)
 
 
 export function helloWorldHTTP(req: Request, res: Response) {
-    console.log(req)
+    console.log("hello")
 
     res
         .status(200)
