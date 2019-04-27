@@ -4,8 +4,9 @@
 
 ### Features:
 
-* [Functions Framework](https://github.com/GoogleCloudPlatform/functions-framework-nodejs)
-* Live reload
+* Uses [Functions Framework](https://github.com/GoogleCloudPlatform/functions-framework-nodejs)
+* Has request, response, and event typings
+* Live reload of local server
 * Deploy shortcut (including Nodejs 10 runtime by default)
 * [Google Typescript style](https://www.npmjs.com/package/gts) 
 
