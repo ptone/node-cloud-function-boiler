@@ -13,9 +13,9 @@
 ### Usage:
 
 ```bash
-curl -L https://github.com/ptone/node-cloud-function-boiler/tarball/master | tar -xvz
-mv ptone-node-cloud-function-boiler-* my-func
+mkdir my-func
 cd my-func
+curl -L https://github.com/ptone/node-cloud-function-boiler/tarball/master | tar --strip 1 -C ./ -xvz
 yarn
 export FUNCTION_TARGET=helloWorldHTTP
 code .
@@ -40,7 +40,11 @@ Note: this assumes you have your current project configured in gcloud
 ```bash
 yarn run deploy
 ```
+As you develop a function, you should:
 
+* Update the `FUNCTION_TARGET` env var
+* Update the details in package.json
+* git init and manage your function in VCS
 
 Inspired by: https://github.com/amsokol/gcp-cloud-functions-typescript-starter
 
