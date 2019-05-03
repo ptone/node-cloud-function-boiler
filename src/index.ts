@@ -1,5 +1,6 @@
-import {Request, Response} from "express"
-
+import { Request, Response } from "express"
+import { createLogger, transports } from 'winston';
+import { LoggingWinston } from '@google-cloud/logging-winston';
 import PubsubEvent = GoogleCloudPlatform.CloudFunctions.PubsubEvent
 import StorageEvent = GoogleCloudPlatform.CloudFunctions.StorageEvent
 import Callback = GoogleCloudPlatform.CloudFunctions.Callback
@@ -12,8 +13,24 @@ console.log(pubsub)
 */
 
 
+
+// set up logging (note FUNCTION_TARGET has replaced FUNCTION_NAME as reserved env var)
+const loggingWinston = new LoggingWinston({ 'logName': process.env['FUNCTION_TARGET'] });
+const logger = createLogger({
+    level: 'info',
+    transports: [
+        // goes to functions log
+        new transports.Console(),
+        // goes to named log, under "Global" resource
+        loggingWinston,
+    ],
+});
+
+
+
 export function helloWorldHTTP(req: Request, res: Response) {
-    console.log("hello")
+    logger.info("Hello");
+    logger.warn("uh-oh");
 
     res
         .status(200)
