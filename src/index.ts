@@ -35,7 +35,7 @@ export function helloWorldHTTP(req: Request, res: Response) {
     res
         .status(200)
         .type("application/json")
-        .send("{ \"result\": \"Hello World!\"}")
+        .send("{ \"result\": \"Hello World!\"}\n")
         .end()
 }
 

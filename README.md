@@ -46,6 +46,31 @@ As you develop a function, you should:
 * Update the details in package.json
 * git init and manage your function in VCS
 
+
+## Cloud Run
+
+Build the Docker image:
+```
+export PROJECT=$(gcloud config list project --format "value(core.project)" )
+export IMAGENAME=`echo gcr.io/$PROJECT/$FUNCTION_TARGET | tr '[:upper:]' '[:lower:]'`
+
+### Build locally
+
+```
+docker build -t $IMAGENAME --build-arg target=$FUNCTION_TARGET .
+docker push $IMAGENAME 
+```
+
+### Run locallly
+
+```
+docker run -p 8080:8080 -e GOOGLE_CLOUD_PROJECT=$PROJECT $IMAGENAME 
+```
+
+gcloud config set builds/use_kaniko True
+
+gcloud builds submit --config cloudbuild.yaml .
+
 Inspired by: https://github.com/amsokol/gcp-cloud-functions-typescript-starter
 
 This is not a Google Product.

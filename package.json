@@ -24,6 +24,7 @@
     "clean": "gts clean",
     "compile": "yarn tsc -p .",
     "develop": "yarn tsc-watch --onSuccess 'yarn start'",
+    "run-dev": "yarn tsc-watch --onSuccess './scripts/dev-build-run.sh'",
     "fix": "gts fix",
     "prepare": "yarn run compile",
     "pretest": "yarn run compile",
