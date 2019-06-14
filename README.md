@@ -53,11 +53,18 @@ Build the Docker image:
 ```
 export PROJECT=$(gcloud config list project --format "value(core.project)" )
 export IMAGENAME=`echo gcr.io/$PROJECT/$FUNCTION_TARGET | tr '[:upper:]' '[:lower:]'`
+```
+
+### Prepare Docker Images
+
+```
+./scripts/prep-images.sh
+```
 
 ### Build locally
 
 ```
-docker build -t $IMAGENAME --build-arg target=$FUNCTION_TARGET .
+docker build  -t $IMAGENAME --build-arg target=$FUNCTION_TARGET -f ./docker/build.dockerfile  .
 docker push $IMAGENAME 
 ```
 
@@ -67,9 +74,18 @@ docker push $IMAGENAME
 docker run -p 8080:8080 -e GOOGLE_CLOUD_PROJECT=$PROJECT $IMAGENAME 
 ```
 
-gcloud config set builds/use_kaniko True
+### Build and run iteratively
 
+```
+yarn run run-dev
+```
+
+### Build Remote
+
+```
+gcloud config set builds/use_kaniko True
 gcloud builds submit --config cloudbuild.yaml .
+```
 
 Inspired by: https://github.com/amsokol/gcp-cloud-functions-typescript-starter
 
