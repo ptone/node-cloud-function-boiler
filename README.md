@@ -57,34 +57,31 @@ export IMAGENAME=`echo gcr.io/$PROJECT/$FUNCTION_TARGET | tr '[:upper:]' '[:lowe
 
 ### Prepare Docker Images
 
+These are used to more quickly iterate on local builds. This must be re-run anytime you add or change package dependencies in package.json including if change between different function targets if they have different dependencies. 
+
 ```
 ./scripts/prep-images.sh
 ```
 
-### Build locally
+### Iterate on function code in container locally
 
-```
-docker build  -t $IMAGENAME --build-arg target=$FUNCTION_TARGET -f ./docker/build.dockerfile  .
-docker push $IMAGENAME 
-```
-
-### Run locallly
-
-```
-docker run -p 8080:8080 -e GOOGLE_CLOUD_PROJECT=$PROJECT $IMAGENAME 
-```
-
-### Build and run iteratively
+This will rebuild and run the docker container on every code change. It uses the prepared base images to focus on just your code changes without re-installing all dependencies.
 
 ```
 yarn run run-dev
 ```
 
+### Deploy the container once you are happy
+
+This will tag the container with the current git commit, push to the project registry, and deploy to cloud run.
+
 ### Build Remote
 
 ```
 gcloud config set builds/use_kaniko True
-gcloud builds submit --config cloudbuild.yaml .
+export PROJECT=$(gcloud config list project --format "value(core.project)" )
+export IMAGENAME=`echo gcr.io/$PROJECT/$FUNCTION_TARGET | tr '[:upper:]' '[:lower:]'`
+gcloud builds submit --config cloudbuild.yaml --substitutions _FUNCTION_TARGET=$FUNCTION_TARGET,_IMAGENAME=$IMAGENAME .
 ```
 
 Inspired by: https://github.com/amsokol/gcp-cloud-functions-typescript-starter
