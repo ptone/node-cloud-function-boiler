@@ -8,11 +8,12 @@ fi
 
 start=`date +%s`
 PROJECT=$(gcloud config list project --format "value(core.project)" )
-IMAGENAME=`echo gcr.io/$PROJECT/$FUNCTION_TARGET | tr '[:upper:]' '[:lower:]'`
+SERVICE=$(echo $FUNCTION_TARGET | tr '[:upper:]' '[:lower:]')
+IMAGENAME=gcr.io/$PROJECT/$SERVICE
 echo "==== using image: ===="
 echo $IMAGENAME
 
 tag=$(git rev-parse --verify HEAD)
 docker tag $IMAGENAME:dev $IMAGENAME:$tag
 docker push $IMAGENAME:$tag 
-gcloud alpha run deploy $FUNCTION_TARGET --image=$IMAGENAME:$tag
+gcloud alpha run deploy $SERVICE --image=$IMAGENAME:$tag $DEPLOY_ARGS
