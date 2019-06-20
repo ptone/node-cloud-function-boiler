@@ -14,7 +14,7 @@ docker build  -t $IMAGENAME:dev --build-arg target=$FUNCTION_TARGET -f ./docker/
 echo
 end=`date +%s`
 runtime=$((end-start))
-echo "Rebuild: $runtime"
+echo "Rebuild time: $runtime seconds"
 echo
 echo "==== Running ===="
 
