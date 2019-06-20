@@ -10,11 +10,20 @@ echo "==== Removing running image ===="
 docker rm -f $(docker ps -a -q --filter ancestor=$IMAGENAME:dev --format="{{.ID}}")
 echo
 echo "==== Building new image ===="
-docker build  -t $IMAGENAME:dev --build-arg target=$FUNCTION_TARGET -f ./docker/build.dockerfile  .
+docker build  -t $IMAGENAME:dev --build-arg target=$FUNCTION_TARGET -f ./docker/full.dockerfile  .
 echo
 end=`date +%s`
 runtime=$((end-start))
 echo "Rebuild: $runtime"
 echo
 echo "==== Running ===="
-docker run -p 8080:8080 -e GOOGLE_CLOUD_PROJECT=$PROJECT $IMAGENAME:dev 
+
+extra=""
+if [[ -n GOOGLE_APPLICATION_CREDENTIALS ]];
+then
+  extra="--volume ${GOOGLE_APPLICATION_CREDENTIALS}:/key.json -e \"GOOGLE_APPLICATION_CREDENTIALS=/key.json\" -e \"GOOGLE_CLOUD_PROJECT=$PROJECT\""
+else
+  extra="-e GOOGLE_CLOUD_PROJECT=$PROJECT"
+fi
+# using eval as was hitting some glitch getting -e env vars passed correctly otherwise
+eval "docker run $extra -p 8080:8080 $IMAGENAME:dev"

@@ -23,13 +23,14 @@
     "check": "gts check",
     "clean": "gts clean",
     "compile": "yarn tsc -p .",
-    "develop": "yarn tsc-watch --onSuccess 'yarn start'",
-    "run-dev": "yarn tsc-watch --onSuccess './scripts/dev-build-run.sh'",
+    "dev": "yarn tsc-watch --onSuccess 'yarn run start'",
+    "dev-run": "yarn tsc-watch --onSuccess './scripts/dev-build-run.sh'",
     "fix": "gts fix",
     "prepare": "yarn run compile",
     "pretest": "yarn run compile",
     "posttest": "yarn run check",
     "deploy-gcf": "cp package.json build/ && yarn run compile && gcloud functions deploy --runtime nodejs10 --trigger-http --source ./build ${FUNCTION_TARGET}",
+    "deploy-run": "./scripts/build-deploy.sh",
     "start": "cd build;functions-framework --target ${FUNCTION_TARGET};cd .."
   }
 }

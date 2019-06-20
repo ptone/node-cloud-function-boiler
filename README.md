@@ -24,7 +24,7 @@ code .
 Serve locally, this includes hot reload via [tsc-watch](https://www.npmjs.com/package/tsc-watch):
 
 ```bash
-yarn run develop
+yarn run dev
 ```
 
 In another terminal swindow:
@@ -38,7 +38,7 @@ deploy via gcloud as Cloud Function:
 Note: this assumes you have your current project configured in gcloud
 
 ```bash
-yarn run deploy
+yarn run deploy-gcf
 ```
 As you develop a function, you should:
 
@@ -49,31 +49,23 @@ As you develop a function, you should:
 
 ## Cloud Run
 
-Build the Docker image:
-```
-export PROJECT=$(gcloud config list project --format "value(core.project)" )
-export IMAGENAME=`echo gcr.io/$PROJECT/$FUNCTION_TARGET | tr '[:upper:]' '[:lower:]'`
-```
-
-### Prepare Docker Images
-
-These are used to more quickly iterate on local builds. This must be re-run anytime you add or change package dependencies in package.json including if change between different function targets if they have different dependencies. 
-
-```
-./scripts/prep-images.sh
-```
+The same code which you can deploy on Cloud Functions can be deployed to the managed Cloud Run service.
 
 ### Iterate on function code in container locally
 
 This will rebuild and run the docker container on every code change. It uses the prepared base images to focus on just your code changes without re-installing all dependencies.
 
 ```
-yarn run run-dev
+yarn run dev-run
 ```
 
 ### Deploy the container once you are happy
 
-This will tag the container with the current git commit, push to the project registry, and deploy to cloud run.
+This will tag the most recently built local:dev container tagged with the current git commit, push to the project registry, and deploy to cloud run. This will fail if you have uncommited changes.
+
+```
+yarn run deploy-run
+```
 
 ### Build Remote
 

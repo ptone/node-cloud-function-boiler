@@ -31,7 +31,6 @@ const logger = createLogger({
 export function helloWorldHTTP(req: Request, res: Response) {
     logger.info("Hello");
     logger.warn("uh-oh");
-
     res
         .status(200)
         .type("application/json")

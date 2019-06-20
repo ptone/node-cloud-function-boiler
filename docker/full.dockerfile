@@ -1,9 +1,15 @@
 FROM node:10 as builder
 
 WORKDIR .
-COPY . .
+# COPY . .
+COPY *.json ./
+COPY *.lock ./
+RUN mkdir ./src
+RUN touch ./src/index.ts
 
 RUN yarn install
+
+COPY src/* ./src/
 RUN yarn run compile
 
 FROM node:10
