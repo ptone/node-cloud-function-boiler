@@ -59,6 +59,8 @@ This will rebuild and run the docker container on every code change. It uses the
 yarn run dev-run
 ```
 
+Note: If you have a `GOOGLE_APPLICATION_CREDENTIALS` env variable pointing to a service account json key, this will get mounted in the container.
+
 ### Deploy the container once you are happy
 
 This will tag the most recently built local:dev container tagged with the current git commit, push to the project registry, and deploy to cloud run. This will fail if you have uncommited changes.
