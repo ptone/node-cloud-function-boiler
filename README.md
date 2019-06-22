@@ -1,6 +1,6 @@
 # Quick Typescript Google Cloud Functions development
 
-![](boiler.jpg)
+![](https://ptone.github.io/node-cloud-function-boiler/boiler.jpg)
 
 ### Features:
 
