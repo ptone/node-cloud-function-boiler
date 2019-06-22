@@ -13,9 +13,7 @@
 ### Usage:
 
 ```bash
-mkdir my-func
-cd my-func
-curl -L https://github.com/ptone/node-cloud-function-boiler/tarball/master | tar --strip 1 -C ./ -xvz
+npx degit ptone/node-cloud-function-boiler my-func
 yarn
 export FUNCTION_TARGET=helloWorldHTTP
 code .
