@@ -14,6 +14,7 @@
 
 ```bash
 npx degit ptone/node-cloud-function-boiler my-func
+cd my-func
 yarn
 export FUNCTION_TARGET=helloWorldHTTP
 code .
